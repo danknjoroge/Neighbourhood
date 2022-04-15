@@ -1,1 +1,7 @@
-<h1>Hello There</h1>
+{% load bootstrap5 %}
+
+{% block styles %}
+    {% bootstrap_css %}
+{% endblock %}
+
+<h1 class="text-center">Hello There</h1>

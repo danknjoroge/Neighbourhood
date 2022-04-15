@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'neighbour',
-    'bootstrap5'
+    'bootstrap5',
 ]
 
 MIDDLEWARE = [
