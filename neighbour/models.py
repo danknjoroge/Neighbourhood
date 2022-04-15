@@ -8,11 +8,19 @@ class Neighbourhood(models.Model):
     occupants = models.IntegerField()
     admin = models.ForeignKey(User, on_delete=models.CASCADE )
 
-class User(models.Model):
+    def save_neighbours(self):
+        self.save()
+        return self.name
+
+class UserProfile(models.Model):
     name = models.CharField(max_length=255)
-    id = models.AutoField(max_length=8)
+    user_id = models.IntegerField()
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField()
+
+    def save_userprofile(self):
+        self.save()
+        return self.name
 
 
 class Business(models.Model):
@@ -20,6 +28,10 @@ class Business(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField()
+
+    def save_business(self):
+        self.save()
+        return self.name
 
 
 
