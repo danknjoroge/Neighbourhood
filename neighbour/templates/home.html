@@ -5,7 +5,7 @@
 
 {% block styles %}
   {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'css/home.css' %}"> -->
 {% endblock %}
 
 
@@ -24,7 +24,7 @@
 
 
 {% for neigh in neighbour %}
-    {{neigh.location}} <br>
+    {{neigh.neighbourhood_name}} <br>
 {% endfor %}
 
 

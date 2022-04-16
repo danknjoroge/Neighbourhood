@@ -6,7 +6,8 @@ class Neighbourhood(models.Model):
     neighbourhood_name = models.CharField(max_length=288)
     location = models.CharField(max_length=288)
     occupants = models.IntegerField()
-    admin = models.ForeignKey(User, on_delete=models.CASCADE )
+    admin = models.ForeignKey(User, on_delete=models.CASCADE)
+    # date_posted = models.DateTimeField(auto_now_add=True)
 
     def save_neighbours(self):
         self.save()
@@ -14,9 +15,12 @@ class Neighbourhood(models.Model):
 
 class UserProfile(models.Model):
     name = models.CharField(max_length=255)
-    user_id = models.IntegerField()
+    your_id = models.IntegerField()
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    profile_picture = models.ImageField(default='default.png')
+    bio = models.TextField( default="Bio")
 
     def save_userprofile(self):
         self.save()
