@@ -24,7 +24,7 @@ def home(request):
 
 
 def profile(request):
-    current_user = request.userprofile
+    current_user = request.user
     form = ProfileForm(request.POST, request.FILES)
     if request.method == 'POST':
         if form.is_valid():
@@ -37,6 +37,8 @@ def profile(request):
         profile= UserProfile.objects.all()
 
     return render(request, 'profile.html', {'form': form, 'profile': profile})
+
+
 
 
 
