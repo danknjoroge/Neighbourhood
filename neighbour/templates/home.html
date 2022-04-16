@@ -1,8 +1,32 @@
 {% extends "django_registration/base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+
+
+{% block styles %}
+  {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
 
 
 {% block content %}
 
 <h3 class="" >Successsfully created/logged in</h3>
+<form action="{%url 'home'%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    {% bootstrap_form form%}
+    <input type="submit" class="btn btn-primary btn-md" value="Update">
+</form>
+
+
+
+{% for neigh in neighbour %}
+    {{neigh.location}}
+{% endfor %}
+
+
+
+
 
 {% endblock content %}
