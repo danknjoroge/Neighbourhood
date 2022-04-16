@@ -11,7 +11,9 @@
 
 {% block content %}
 
-<h3 class="" >Successsfully created/logged in</h3>
+<div class="container">
+    <h3 class="" >Successsfully created/logged in as {{ user}}</h3>
+
 <form action="{%url 'home'%}" method="post" enctype="multipart/form-data">
     {%csrf_token%}
 
@@ -22,8 +24,11 @@
 
 
 {% for neigh in neighbour %}
-    {{neigh.location}}
+    {{neigh.location}} <br>
 {% endfor %}
+
+
+</div>
 
 
 
