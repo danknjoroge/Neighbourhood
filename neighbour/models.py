@@ -38,8 +38,9 @@ class Business(models.Model):
         return self.name
 
 
-    def search_by_name(self, search_term):
-        
+    def search_by_name(cls, search_term):
+        business = cls.objects.filter(name__icontains=search_term)
+        return business
 
 
 

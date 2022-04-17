@@ -39,6 +39,8 @@ def profile(request):
     return render(request, 'profile.html', {'form': form, 'profile': profile})
 
 
+def search(request):
+    pass
 
 
 
