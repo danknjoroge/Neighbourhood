@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
-from neighbour.models import Neighbourhood, UserProfile
-from .forms import NeighbourhoodForm, ProfileForm
+from neighbour.models import Neighbourhood, Post, UserProfile, Business
+from .forms import BusinessForm, NeighbourhoodForm, PostForm, ProfileForm
 
 # Create your views here.
 def index(request):
@@ -22,6 +22,8 @@ def home(request):
         neighbour = Neighbourhood.objects.all()
     return render(request, 'home.html', { "form": form, "neighbour": neighbour})
 
+# .order_by("-date_created")
+
 
 def profile(request):
     current_user = request.user
@@ -36,11 +38,69 @@ def profile(request):
         form = ProfileForm()
         profile= UserProfile.objects.all()
 
-    return render(request, 'profile.html', {'form': form, 'profile': profile})
+    return render(request, 'post/profile.html', {'form': form, 'profile': profile})
 
 
-def search(request):
-    pass
+def business(request):
+    current_user = request.user
+    form = BusinessForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            business= form.save(commit=False)
+            business.user=current_user
+            business.save()
+        return redirect('business')
+    else:
+        form= BusinessForm()
+        business = Business.objects.all()
+    return render(request, 'post/business.html', {'form': form, 'business': business})
+
+
+# def search(request):
+#     if 'business' in request.GET and request.GET["business"]:
+#         search_term = request.GET.get("business")
+#         searched_business = Business.search_by_name(search_term)
+#         messages = f"{search_term}"
+
+#         return render(request, 'post/search.html', { 'messages': messages, 'business': searched_business})
+#     else:
+#         messages = 'You haven\'t searched any term'
+#         return render(request, 'post/search.html', { 'messages': messages})
+
+
+def post(request):
+    current_user = request.user
+    form = PostForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.posted_by = current_user
+            post.save()
+        return redirect('post')
+    else:
+        form = PostForm()
+        post = Post.objects.all()
+    return render(request, 'post/post.html', {'form': form, 'post': post})
+    
+
+
+
+
+def search_results(request):
+    if 'business' in request.GET and request.GET["business"]:
+        search_term = request.GET.get("business")
+        business = Business.search_by_name(search_term)
+        message = f"{search_term}"
+
+        return render(request, 'post/search.html',{"message":message,"business": business})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'post/search.html',{"message":message})
+
+
+
+
 
 
 

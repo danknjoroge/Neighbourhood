@@ -9,9 +9,17 @@ class Neighbourhood(models.Model):
     admin = models.ForeignKey(User, on_delete=models.CASCADE)
     # date_posted = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.location
+
     def save_neighbours(self):
         self.save()
-        return self.name
+
+    @classmethod
+    def search_by_name(cls,search_term):
+        neighbourhood = cls.objects.filter(neighbourhood_name__icontains=search_term)
+        return neighbourhood
+
 
 class UserProfile(models.Model):
     name = models.CharField(max_length=255)
@@ -22,9 +30,16 @@ class UserProfile(models.Model):
     profile_picture = models.ImageField(default='default.png')
     bio = models.TextField( default="Bio")
 
+    def __str__(self):
+        return self.name
+
     def save_userprofile(self):
         self.save()
-        return self.name
+
+    @classmethod
+    def search_by_title(cls,search_term):
+        news = cls.objects.filter(title__icontains=search_term)
+        return news
 
 
 class Business(models.Model):
@@ -33,14 +48,28 @@ class Business(models.Model):
     neighbourhood = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField()
 
-    def save_business(self):
-        self.save()
+    def __str__(self):
         return self.name
 
+    def save_business(self):
+        self.save()
 
+    @classmethod
     def search_by_name(cls, search_term):
         business = cls.objects.filter(name__icontains=search_term)
         return business
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=122)
+    description = models.TextField()
+    posted_by= models.ForeignKey(User, on_delete=models.CASCADE)
+    posted_on= models.DateTimeField(auto_now_add=True)
+
+    def save_post(self):
+        self.save()
+        return self.title
+
 
 
 

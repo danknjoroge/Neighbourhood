@@ -1,0 +1,38 @@
+{% extends "django_registration/base.html" %}
+{% load bootstrap5 %}
+{% load static %}
+
+
+{% block styles %}
+  {% bootstrap_css %}
+  <!-- <link rel="stylesheet" href="{% static 'css/home.css' %}"> -->
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    <h3 class="" >Successsfully created/logged in as {{ user}}</h3>
+
+<form action="{%url 'business'%}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+
+    {% bootstrap_form form%}
+    <input type="submit" class="btn btn-primary btn-md" value="Update">
+</form>
+
+
+
+{% for buss in business %}
+    {{buss.name}}
+    {{buss.neighbourhood}} <br>
+{% endfor %}
+
+
+</div>
+
+
+
+
+
+{% endblock content %}
