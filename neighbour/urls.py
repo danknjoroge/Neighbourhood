@@ -11,5 +11,7 @@ urlpatterns = [
     # re_path(r'^search/', views.search, name='search')
 
     re_path(r'^search/$', views.search_results, name='search'),
+    re_path(r'^searchn/$', views.search, name='searchn'),
+
 
 ]

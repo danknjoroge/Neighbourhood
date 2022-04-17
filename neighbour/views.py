@@ -56,16 +56,18 @@ def business(request):
     return render(request, 'post/business.html', {'form': form, 'business': business})
 
 
-# def search(request):
-#     if 'business' in request.GET and request.GET["business"]:
-#         search_term = request.GET.get("business")
-#         searched_business = Business.search_by_name(search_term)
-#         messages = f"{search_term}"
+def search(request):
+    if 'neighbourhood' in request.GET and request.GET["neighbourhood"]:
+        search_term = request.GET.get("neighbourhood")
+        neighbourhood = Neighbourhood.search_by_name(search_term)
+        message = f"{search_term}"
 
-#         return render(request, 'post/search.html', { 'messages': messages, 'business': searched_business})
-#     else:
-#         messages = 'You haven\'t searched any term'
-#         return render(request, 'post/search.html', { 'messages': messages})
+        return render(request, 'post/search.html',{"message":message,"neighbourhood": neighbourhood})
+
+    else:
+        message = "You haven't searched for any term"
+        return render(request, 'post/search.html',{"message":message})
+
 
 
 def post(request):

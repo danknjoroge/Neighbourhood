@@ -14,10 +14,20 @@
         </ul>
         {% if user.is_authenticated %}
 
-        <form class="navbar-form " role="search" action="{% url 'search' %} ">
+        <!-- <form class="navbar-form " role="search" action="{% url 'search' %} ">
 
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Search Business" name="business">
+            <div class="input-group-btn">
+              <button class="btn btn-default" type="submit">Search</button>
+
+        </form>  -->
+        <br>
+
+        <form class="navbar-form " role="search" action="{% url 'searchn' %} ">
+
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search Neighbourhood" name="neighbourhood">
             <div class="input-group-btn">
               <button class="btn btn-default" type="submit">Search</button>
 
