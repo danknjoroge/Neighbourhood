@@ -21,7 +21,7 @@ class BusinessForm(forms.ModelForm):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        exclude = ['posted_by, posted_on']
+        exclude = ['posted_by', 'posted_on']
 
 
 
