@@ -6,24 +6,12 @@ from .forms import BusinessForm, NeighbourhoodForm, PostForm, ProfileForm
 def index(request):
     return render(request, 'index.html')
 
-
 def home(request):
-    current_user = request.user
-    form = NeighbourhoodForm(request.POST, request.FILES)
-    if request.method == 'POST':
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.admin = current_user
-            post.save()
-        return redirect('home')
-        
-    else:
-        form = NeighbourhoodForm()
-        neighbour = Neighbourhood.objects.all()
-    return render(request, 'home.html', { "form": form, "neighbour": neighbour})
+
+    neighbour = Neighbourhood.objects.all().order_by('-date_posted')
+    return render(request, 'home.html', {"neighbour": neighbour})
 
 # .order_by("-date_created")
-
 
 def profile(request):
     current_user = request.user
@@ -40,7 +28,6 @@ def profile(request):
 
     return render(request, 'post/profile.html', {'form': form, 'profile': profile})
 
-
 def business(request):
     current_user = request.user
     form = BusinessForm(request.POST, request.FILES)
@@ -55,7 +42,6 @@ def business(request):
         business = Business.objects.all()
     return render(request, 'post/business.html', {'form': form, 'business': business})
 
-
 def search(request):
     if 'neighbourhood' in request.GET and request.GET["neighbourhood"]:
         search_term = request.GET.get("neighbourhood")
@@ -67,8 +53,6 @@ def search(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'post/search.html',{"message":message})
-
-
 
 def post(request):
     current_user = request.user
@@ -84,10 +68,6 @@ def post(request):
         post = Post.objects.all()
     return render(request, 'post/post.html', {'form': form, 'post': post})
     
-
-
-
-
 def search_results(request):
     if 'business' in request.GET and request.GET["business"]:
         search_term = request.GET.get("business")
@@ -101,6 +81,21 @@ def search_results(request):
         return render(request, 'post/search.html',{"message":message})
 
 
+
+def neigh(request):
+    current_user = request.user
+    form = NeighbourhoodForm(request.POST, request.FILES)
+    if request.method == 'POST':
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.admin = current_user
+            post.save()
+        return redirect('home')
+        
+    else:
+        form = NeighbourhoodForm()
+        neighbour = Neighbourhood.objects.all()
+    return render(request, 'post/neigh.html', { "form": form, "neighbour": neighbour})
 
 
 

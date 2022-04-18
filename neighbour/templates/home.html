@@ -5,33 +5,25 @@
 
 {% block styles %}
   {% bootstrap_css %}
+
   <!-- <link rel="stylesheet" href="{% static 'css/home.css' %}"> -->
 {% endblock %}
 
 
 {% block content %}
 
-<div class="container">
-    <h3 class="" >Successsfully created/logged in as {{ user}}</h3>
-
-<form action="{%url 'home'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-
-    {% bootstrap_form form%}
-    <input type="submit" class="btn btn-primary btn-md" value="Update">
-</form>
 
 
-
+<a class='btn btn-default bg-warning' href="{% url 'neigh'%}">Add your Neighbourhood</a> <br>
 {% for neigh in neighbour %}
-    {{neigh.neighbourhood_name}} <br>
+    <!-- <img src="{{neigh.image.url}}" alt=""> -->
+    {{neigh.neighbourhood_name}} 
+    {{neigh.location}}
+    {{neigh.occupants}}
+    posted by{{neigh.admin}}
+    {{neigh.date_posted}} <br>
 {% endfor %}
 
-
 </div>
-
-
-
-
 
 {% endblock content %}
