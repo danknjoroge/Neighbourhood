@@ -1,6 +1,11 @@
 from django.shortcuts import redirect, render
 from neighbour.models import Neighbourhood, Post, UserProfile, Business
 from .forms import BusinessForm, NeighbourhoodForm, PostForm, ProfileForm
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
+
+
 
 # Create your views here.
 def index(request):
@@ -115,6 +120,15 @@ def neigh(request):
     return render(request, 'post/neigh.html', { "form": form, "neighbour": neighbour})
 
 
+
+@login_required(login_url='/accounts/login/')
+def neidetails(request, neighbourhood_id):
+    try:
+        neighbour = Neighbourhood.objects.get(id = neighbourhood_id)
+    except ObjectDoesNotExist:
+        raise Http404()
+
+    return render(request, 'post/nei.html', {'neighbour': neighbour})
 
 
 

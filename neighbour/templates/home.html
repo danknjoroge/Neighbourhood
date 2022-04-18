@@ -5,8 +5,7 @@
 
 {% block styles %}
   {% bootstrap_css %}
-
-  <!-- <link rel="stylesheet" href="{% static 'css/home.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 
@@ -15,14 +14,22 @@
 
 
 <a class='btn btn-default bg-warning' href="{% url 'neigh'%}">Add your Neighbourhood</a> <br>
-{% for neigh in neighbour %}
-    <!-- <img src="{{neigh.image.url}}" alt=""> -->
-    {{neigh.neighbourhood_name}} 
-    {{neigh.location}}
-    {{neigh.occupants}}
-    posted by{{neigh.admin}}
-    {{neigh.date_posted}} <br>
-{% endfor %}
+<div class="container text-center">
+    <div class="row my-4">
+        {% for neigh in neighbour %}
+
+    <div class="col-md-3 home m-3">
+    <img src="{{neigh.image.url}}" alt="" width= 319rem> <br>
+    <p>Neighbourhood: {{neigh.neighbourhood_name}}</p> 
+    <p>Location: {{neigh.location}}</p>
+    <p>Number of Occupants: {{neigh.occupants}}</p>
+   <p> Posted by: {{neigh.admin}}</p>
+   <p> Posted On: {{neigh.date_posted}} </p>
+</div>
+        {% endfor %}
+
+    </div>
+</div>
 
 </div>
 
