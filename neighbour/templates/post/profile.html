@@ -11,22 +11,47 @@
 
 
 {% block content %}
+<h3 class="" >Successsfully created/logged in as {{ user}}</h3>
+<div class="container row">
+    <div class="col-md-6">
+        <form action="{%url 'profile'%}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+        
+            {% bootstrap_form form%}
+            <input type="submit" class="btn btn-primary btn-md" value="Update">
+        </form>
+        
+    </div>
+    <div class="col-md-6">
+        {% for prof in profile %}
+        <div class="row">
+            <div class=" col-md-6">
+                <img src="{{prof.profile_picture.url}}" alt="img" width="140px" class="rounded-circle z-depth-2">
+
+            </div>
+            <div class=" col-md-6">
+                <!-- {% for prof in profile %}
+                    {{prof.name}} <br>
+                    {{prof.your_id}}
+                {% endfor %}
+            </div> -->
+            <h3>username{{user.username}}</h3>
+            <h4>Email: {{user.email}}</h4> <br>
+            <h4>Bio: {{prof.bio}}</h4> <br>
+        </div>
+        
+    </div>
+    {% endfor %}
+
+</div>
 
 <div class="container">
-    <h3 class="" >Successsfully created/logged in as {{ user}}</h3>
-
-<form action="{%url 'profile'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-
-    {% bootstrap_form form%}
-    <input type="submit" class="btn btn-primary btn-md" value="Update">
-</form>
+   
 
 
 
-{% for prof in profile %}
-    {{prof.name}} <br>
-{% endfor %}
+
+
 
 
 </div>

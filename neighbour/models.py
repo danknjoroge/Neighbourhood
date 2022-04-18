@@ -22,10 +22,12 @@ class Neighbourhood(models.Model):
         neighbourhood = cls.objects.filter(neighbourhood_name__icontains=search_term)
         return neighbourhood
 
+    # def delete_neighbourhood
+
 
 class UserProfile(models.Model):
     name = models.CharField(max_length=255)
-    your_id = models.IntegerField()
+    national_identity_no = models.IntegerField()
     neighbourhood_name = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)

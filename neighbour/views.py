@@ -13,19 +13,36 @@ def home(request):
 
 # .order_by("-date_created")
 
+# def profile(request):
+#     current_user = request.user
+#     if request.method == 'POST':
+#         form = ProfileForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             profile= form.save(commit=False)
+#             profile.user = current_user
+#             profile.save()
+#         return redirect('profile')
+#     else:
+#         form = ProfileForm()
+#         profile= UserProfile.objects.all()
+
+#     return render(request, 'post/profile.html', {'form': form, 'profile': profile})
+
+# @login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
-    form = ProfileForm(request.POST, request.FILES)
     if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
-            profile= form.save(commit=False)
-            profile.user = current_user
-            profile.save()
+            post = form.save(commit=False)
+            post.user = current_user
+            post.save()
         return redirect('profile')
+
     else:
         form = ProfileForm()
-        profile= UserProfile.objects.all()
-
+        profile = UserProfile.objects.all()
+        # project = Projects.objects.all()
     return render(request, 'post/profile.html', {'form': form, 'profile': profile})
 
 def business(request):
