@@ -3,8 +3,15 @@ body{
 }
 .home{
     width: 342px;
-    height: 421px;
+    height: 471px;
     /* border: 1px solid black; */
     border-radius: 8px;
     box-shadow:2px 2px  orangered
+}
+.container .row .buss{
+    width: 370px;
+    height: 250px;
+    border-radius: 8px;
+    box-shadow:2px 2px 2px 2px orangered;
+    /* margin: left 22px; */
 }

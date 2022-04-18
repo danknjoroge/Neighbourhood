@@ -11,9 +11,11 @@
 
 
 {% block content %}
-<h3 class="" >Successsfully created/logged in as {{ user}}</h3>
-<div class="container row">
+<!-- <h3 class="" >Welcome {{ user}} to your Profile</h3> -->
+<div class="container row text-center">
     <div class="col-md-6">
+        <h4>        Create Your Profile Here
+        </h4>
         <form action="{%url 'profile'%}" method="post" enctype="multipart/form-data">
             {%csrf_token%}
         
@@ -23,6 +25,8 @@
         
     </div>
     <div class="col-md-6">
+        <h4>View Your Profile info here</h4>
+
         {% for prof in profile %}
         <div class="row">
             <div class=" col-md-6">

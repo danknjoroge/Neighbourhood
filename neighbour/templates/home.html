@@ -25,6 +25,8 @@
     <p>Number of Occupants: {{neigh.occupants}}</p>
    <p> Posted by: {{neigh.admin}}</p>
    <p> Posted On: {{neigh.date_posted}} </p>
+   <a class='btn btn-danger'href="{% url 'delete' neigh.id %}" target="_blank">Delete</a> </a>
+
 </div>
         {% endfor %}
 

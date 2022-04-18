@@ -11,7 +11,7 @@ urlpatterns = [
     path('neidetails/<int:neighbourhood_id>/', views.neidetails, name='neidetails'),
     path('business/', views.business, name='business'),
     path('post', views.post, name='post'),
-    # re_path(r'^search/', views.search, name='search')
+    path(r'delete/<int:pk>', views.delete_post, name='delete'),
 
     re_path(r'^search/$', views.search_results, name='search'),
     re_path(r'^searchn/$', views.search, name='searchn'),

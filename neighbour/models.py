@@ -32,7 +32,7 @@ class UserProfile(models.Model):
     email = models.EmailField()
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     profile_picture = models.ImageField(default='default.png', upload_to = 'profile/')
-    bio = models.TextField( default="Bio")
+    bio = models.TextField( default="")
 
     def __str__(self):
         return self.name
@@ -48,6 +48,7 @@ class UserProfile(models.Model):
 
 class Business(models.Model):
     name = models.CharField(max_length=277)
+    description = models.TextField(default=None, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     neighbourhood_name = models.ForeignKey(Neighbourhood, on_delete=models.CASCADE)
     email = models.EmailField()
