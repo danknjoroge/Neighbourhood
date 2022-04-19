@@ -22,7 +22,8 @@ class Neighbourhood(models.Model):
         neighbourhood = cls.objects.filter(neighbourhood_name__icontains=search_term)
         return neighbourhood
 
-    # def delete_neighbourhood
+    def delete_neighbourhood(self):
+        self.delete()
 
 
 class UserProfile(models.Model):
@@ -37,7 +38,10 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.name
 
-    def save_userprofile(self):
+    def save_profile(self):
+        self.save()
+
+    def delete_profile(self):
         self.save()
 
     @classmethod
@@ -64,6 +68,8 @@ class Business(models.Model):
         business = cls.objects.filter(name__icontains=search_term)
         return business
 
+    def delete_business(self):
+        self.delete()
 
 class Post(models.Model):
     title = models.CharField(max_length=122)
@@ -72,11 +78,16 @@ class Post(models.Model):
     posted_by= models.ForeignKey(User, on_delete=models.CASCADE)
     posted_on= models.DateTimeField(auto_now_add=True)
 
+
+    def __str__(self):
+        return self.title
+
     def save_post(self):
         self.save()
         return self.title
 
-
+    def delete_post(self):
+        self.delete()
 
 
 

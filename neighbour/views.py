@@ -50,6 +50,7 @@ def profile(request):
         profile = UserProfile.objects.all()
         # project = Projects.objects.all()
     return render(request, 'post/profile.html', {'form': form, 'profile': profile})
+    
 @login_required(login_url='/accounts/login/')
 def business(request):
     current_user = request.user
@@ -64,6 +65,7 @@ def business(request):
         form= BusinessForm()
         business = Business.objects.all()
     return render(request, 'post/business.html', {'form': form, 'business': business})
+
 @login_required(login_url='/accounts/login/')
 def search(request):
     if 'neighbourhood' in request.GET and request.GET["neighbourhood"]:
@@ -78,6 +80,7 @@ def search(request):
         neighbour = Neighbourhood.objects.all().order_by('-date_posted')
 
         return render(request, 'post/search.html',{"message":message, 'neighbour':neighbour})
+
 @login_required(login_url='/accounts/login/')
 def post(request):
     current_user = request.user
@@ -92,6 +95,7 @@ def post(request):
         form = PostForm()
         post = Post.objects.all()
     return render(request, 'post/post.html', {'form': form, 'post': post})
+
 @login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'business' in request.GET and request.GET["business"]:
