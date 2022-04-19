@@ -1,13 +1,24 @@
 {% extends "django_registration/base.html" %}
 {% load bootstrap5 %}
+{% load static %}
 
 {% block styles %}
     {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 
 {% block content %}
 
-<h1 class="text-center">Hello There</h1>
+<div class="container-fluid index">
+        
+    
+    <h1>Neighbourhood!!!</h1>
+   <div class="container anchor">
+       <a class='btn btn-default' href="/accounts/login">LOGIN</a>
+   || <a class='btn btn-default' href="/accounts/register">REGISTER</a>
+   </div>
 
+
+   </div>
 {% endblock content %}

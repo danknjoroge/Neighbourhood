@@ -10,8 +10,42 @@ body{
 }
 .container .row .buss{
     width: 370px;
-    height: 250px;
+    height: 280px;
     border-radius: 8px;
     box-shadow:2px 2px 2px 2px orangered;
     /* margin: left 22px; */
+}
+.index{
+    background: url("/static/images/image.jpg") 50% 0 no-repeat fixed;
+    color:orangered;
+    height: 580px;
+    /* padding: 100px 0 0 0;   */
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+h1{
+    text-align: center;
+    font-size: 94px;
+    font-weight: bold;
+    font-family: 'Satisfy', cursive;
+    padding-top: 132px;
+    text-shadow: 4px 4px white;
+}
+.anchor{
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+}
+.anchor>a{
+    color: black;
+    font-size: 40px;
+    font-weight: bold;
+
+}
+.anchor>a:hover{
+    color: orangered;
+    font-size: 40px;
+    font-weight: bold;
+    font-style: italic;
+
 }

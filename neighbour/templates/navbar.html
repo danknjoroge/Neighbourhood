@@ -14,14 +14,6 @@
         </ul>
         {% if user.is_authenticated %}
 
-        <form class="navbar-form " role="search" action="{% url 'search' %} ">
-
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search Business" name="business">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">Search</button>
-
-        </form> 
         <br>
 
         <form class="navbar-form " role="search" action="{% url 'searchn' %} ">
@@ -42,8 +34,8 @@
         <a class='btn btn-default' href="{% url "logout" %}?next=/">Logout</a>
         {% else %}
         <span class="navbar-text">
-            <a class='btn btn-default' href="/accounts/login">Login</a>
-            <a class='btn btn-default' href="/accounts/register">Register</a>
+            <!-- <a class='btn btn-default' href="/accounts/login">Login</a>
+            <a class='btn btn-default' href="/accounts/register">Register</a> -->
         </span>
         {% endif %}
       </div>

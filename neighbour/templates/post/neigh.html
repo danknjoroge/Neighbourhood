@@ -6,14 +6,14 @@
 {% block styles %}
   {% bootstrap_css %}
 
-  <!-- <link rel="stylesheet" href="{% static 'css/home.css' %}"> -->
+  <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% endblock %}
 
 
 {% block content %}
 
 <div class="container">
-    <h3 class="" >Successsfully created/logged in as {{ user}}</h3>
+    <h3 class=" text-center" > Add Your Neighbourhood</h3>
 
 <form action="{%url 'neigh'%}" method="post" enctype="multipart/form-data">
     {%csrf_token%}

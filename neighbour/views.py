@@ -75,7 +75,9 @@ def search(request):
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'post/search.html',{"message":message})
+        neighbour = Neighbourhood.objects.all().order_by('-date_posted')
+
+        return render(request, 'post/search.html',{"message":message, 'neighbour':neighbour})
 
 def post(request):
     current_user = request.user
@@ -97,11 +99,11 @@ def search_results(request):
         business = Business.search_by_name(search_term)
         message = f"{search_term}"
 
-        return render(request, 'post/search.html',{"message":message,"business": business})
+        return render(request, 'post/sach.html',{"message":message,"business": business})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'post/search.html',{"message":message})
+        return render(request, 'post/sach.html',{"message":message})
 
 
 

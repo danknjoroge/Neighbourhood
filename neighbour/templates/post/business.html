@@ -10,12 +10,22 @@
 
 
 {% block content %}
-
 <div class="container">
+    <form class="navbar-form " role="search" action="{% url 'search' %} ">
+
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Search Business" name="business">
+          <div class="input-group-btn">
+            <button class="btn btn-default" type="submit">Search</button>
+    
+    
+</div>
+
+<div class="container m-4">
  <div class="container row text-center ">
     <!-- <div class="col-md-3"></div> -->
     <div class="col-md-6">
-        <h3 class="" >{{user}},Post your business here!</h3>
+        <h3 class="mt-4" >{{user}},Post your business here!</h3>
 
     <form action="{%url 'business'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
@@ -27,6 +37,7 @@
     </div>
 
     <div class="col-md-6">
+        <h4 class="mt-4">Available Businesses</h4>
         <div class="container row my-4 ">
             {% for buss in business %}
             <div class=" buss m-3">
@@ -34,8 +45,9 @@
                 <p><h4>Description:</h4> {{buss.description}}</p>
                 <p>Location:  {{buss.neighbourhood_name}}</p>
                 <p>Contacts: {{buss.email}}</p>
+                <p>Owned by: {{buss.user}}</p>
         
-                <a class='btn btn-danger'href="{% url 'delete' buss.id %}" target="_blank">Delete</a> </a>
+                <a class='btn btn-danger mb-3'href="{% url 'delete' buss.id %}" target="_blank">Delete</a> </a>
         
             </div>
             {% endfor %}
