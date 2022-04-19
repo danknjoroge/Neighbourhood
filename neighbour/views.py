@@ -13,7 +13,6 @@ def index(request):
     return render(request, 'index.html')
 
 def home(request):
-
     neighbour = Neighbourhood.objects.all().order_by('-date_posted')
     return render(request, 'home.html', {"neighbour": neighbour})
 
@@ -35,6 +34,7 @@ def home(request):
 #     return render(request, 'post/profile.html', {'form': form, 'profile': profile})
 
 # @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def profile(request):
     current_user = request.user
     if request.method == 'POST':
@@ -50,7 +50,7 @@ def profile(request):
         profile = UserProfile.objects.all()
         # project = Projects.objects.all()
     return render(request, 'post/profile.html', {'form': form, 'profile': profile})
-
+@login_required(login_url='/accounts/login/')
 def business(request):
     current_user = request.user
     form = BusinessForm(request.POST, request.FILES)
@@ -64,7 +64,7 @@ def business(request):
         form= BusinessForm()
         business = Business.objects.all()
     return render(request, 'post/business.html', {'form': form, 'business': business})
-
+@login_required(login_url='/accounts/login/')
 def search(request):
     if 'neighbourhood' in request.GET and request.GET["neighbourhood"]:
         search_term = request.GET.get("neighbourhood")
@@ -78,7 +78,7 @@ def search(request):
         neighbour = Neighbourhood.objects.all().order_by('-date_posted')
 
         return render(request, 'post/search.html',{"message":message, 'neighbour':neighbour})
-
+@login_required(login_url='/accounts/login/')
 def post(request):
     current_user = request.user
     form = PostForm(request.POST, request.FILES)
@@ -92,7 +92,7 @@ def post(request):
         form = PostForm()
         post = Post.objects.all()
     return render(request, 'post/post.html', {'form': form, 'post': post})
-    
+@login_required(login_url='/accounts/login/')
 def search_results(request):
     if 'business' in request.GET and request.GET["business"]:
         search_term = request.GET.get("business")
@@ -106,7 +106,7 @@ def search_results(request):
         return render(request, 'post/sach.html',{"message":message})
 
 
-
+@login_required(login_url='/accounts/login/')
 def neigh(request):
     current_user = request.user
     form = NeighbourhoodForm(request.POST, request.FILES)
@@ -133,7 +133,7 @@ def neidetails(request, neighbourhood_id):
 
     return render(request, 'post/nei.html', {'neighbour': neighbour})
 
-
+@login_required(login_url='/accounts/login/')
 def delete_post(request, pk):
     post = Neighbourhood.objects.get(id=pk)
     
